@@ -21,13 +21,14 @@ jobs:
           name: Build Installers
           command: |
             . venv/bin/activate
-            python setup.py build
-            sudo apt-get install zip
-            mkdir end
-            zip -r ./end/bolt.zip build
+            python setup.py build;
+            sudo apt-get install zip;
+            mkdir /tmp/end;
+            zip -r .tmp/end/bolt.zip build;
 
       - store_artifacts:
-          path: /end
+          path: .tmp/end
+          destination: bolt.zip
 
   release:
       docker:
