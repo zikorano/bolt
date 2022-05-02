@@ -24,11 +24,11 @@ jobs:
             python setup.py build;
             sudo apt-get install zip;
             mkdir /tmp/end;
-            cd tmp/end;
+            cd /tmp/end;
             zip -r bolt.zip build;
 
       - store_artifacts:
-          path: .tmp/end
+          path: /tmp/end
           destination: bolt.zip
 
   release:
