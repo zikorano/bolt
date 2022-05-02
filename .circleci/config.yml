@@ -21,10 +21,13 @@ jobs:
           name: Build Installers
           command: |
             . venv/bin/activate
-            python setup.py build bdist_msi
+            python setup.py build
+            sudo apt-get install zip
+            mkdir end
+            zip -r ./end/bolt.zip build
 
       - store_artifacts:
-          path: /dist
+          path: /end
 
   release:
       docker:
