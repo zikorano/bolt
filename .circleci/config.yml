@@ -1,0 +1,47 @@
+version: 2.1
+
+orbs:
+  github-release: duffn/github-release@0.1
+
+jobs:
+  build_files:
+    docker:
+      - image: circleci/python:3.8
+
+    steps:
+      - checkout
+      - run:
+          name: Environment Setup
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+
+      - run:
+          name: Build Installers
+          command: |
+            . venv/bin/activate
+            python setup.py build bdist_msi
+
+      - store_artifacts:
+          path: /dist
+
+  release:
+      docker:
+      - image: cimg/base:stable
+      
+      steps:
+        - checkout
+        - github-release/release
+
+workflows:
+  app_build:
+    jobs:
+      - build_files
+  release:
+    jobs:
+      - release:
+          filters:
+            branches:
+              only:
+                - master

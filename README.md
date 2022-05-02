@@ -3,7 +3,7 @@
 A dead simple (and probably broken) playlist file converter for converting `.m3u8` playlists to [Dopamine](https://github.com/digimezzo/dopamine-windows)'s `.m3u` playlist format.
 
 ### Installlation
-You can get the binaries on the [releases]() tab.
+You can get the binaries on the [releases](https://github.com/zikorano/bolt/releases) tab.
 
 ### Usage
 To convert a playlist open a terminal and type the following command.
